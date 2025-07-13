@@ -1,0 +1,6 @@
+# Eye Health Website Structure and Customization Guide
+
+## Project Overview
+This is an interactive eye health website featuring Tux the penguin as a guide through various eye tests and educational content. The website is built with pure HTML, CSS, and JavaScript without any frameworks.
+
+## File Structure

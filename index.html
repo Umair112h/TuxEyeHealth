@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Health Check - Tux's Vision Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="level-indicators">
+            <div class="level-dot" data-level="1"><i class="fas fa-play"></i></div>
+            <div class="level-dot" data-level="2"><i class="fas fa-palette"></i></div>
+            <div class="level-dot" data-level="3"><i class="fas fa-eye"></i></div>
+            <div class="level-dot" data-level="4"><i class="fas fa-glasses"></i></div>
+            <div class="level-dot" data-level="5"><i class="fas fa-video"></i></div>
+            <div class="level-dot" data-level="6"><i class="fas fa-chart-bar"></i></div>
+        </div>
+    </div>
+
+    <!-- Tux Character -->
+    <div class="tux-container" id="tuxContainer">
+        <div class="tux-character" id="tuxCharacter">
+            <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Tux Body -->
+                <ellipse cx="60" cy="90" rx="35" ry="45" fill="#000000"/>
+                <!-- Tux Belly -->
+                <ellipse cx="60" cy="95" rx="25" ry="35" fill="#ffffff"/>
+                <!-- Tux Head -->
+                <circle cx="60" cy="40" r="30" fill="#000000"/>
+                <!-- Tux Beak -->
+                <polygon points="60,45 65,55 55,55" fill="#FFA500"/>
+                <!-- Tux Eyes -->
+                <circle cx="52" cy="35" r="4" fill="#ffffff"/>
+                <circle cx="68" cy="35" r="4" fill="#ffffff"/>
+                <circle cx="52" cy="35" r="2" fill="#000000"/>
+                <circle cx="68" cy="35" r="2" fill="#000000"/>
+                <!-- Tux Feet -->
+                <ellipse cx="50" cy="130" rx="8" ry="6" fill="#FFA500"/>
+                <ellipse cx="70" cy="130" rx="8" ry="6" fill="#FFA500"/>
+            </svg>
+        </div>
+        <div class="speech-bubble" id="speechBubble">
+            <p id="speechText">Hello! I'm Tux, your eye health guide. Let's start your vision journey!</p>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <!-- Level 1: Introduction -->
+        <section class="level-section active" id="level1">
+            <div class="level-content">
+                <h1>Welcome to Your Eye Health Journey</h1>
+                <div class="intro-content">
+                    <h2>What we'll test today:</h2>
+                    <ul class="test-list">
+                        <li><i class="fas fa-palette"></i> Color Vision Test</li>
+                        <li><i class="fas fa-eye"></i> Visual Acuity Assessment</li>
+                        <li><i class="fas fa-glasses"></i> Prescription Analysis</li>
+                        <li><i class="fas fa-video"></i> Vision Condition Education</li>
+                        <li><i class="fas fa-chart-bar"></i> Your Results Summary</li>
+                    </ul>
+                    <button class="next-btn" onclick="nextLevel()">Start Your Journey</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 2: Color Blindness Test -->
+        <section class="level-section" id="level2">
+            <div class="level-content">
+                <h2>Color Vision Test</h2>
+                <div class="test-container">
+                    <div class="test-info">
+                        <p>Look at each image and identify the number you see. If you can't see a number, select "No Number".</p>
+                        <div class="test-progress">
+                            Question <span id="colorTestProgress">1</span> of <span id="colorTestTotal">5</span>
+                        </div>
+                    </div>
+                    <div class="color-test-area">
+                        <div class="test-image-container">
+                            <img id="colorTestImage" src="" alt="Color blindness test image">
+                        </div>
+                        <div class="answer-options">
+                            <button class="answer-btn" data-answer="0">0</button>
+                            <button class="answer-btn" data-answer="1">1</button>
+                            <button class="answer-btn" data-answer="2">2</button>
+                            <button class="answer-btn" data-answer="3">3</button>
+                            <button class="answer-btn" data-answer="4">4</button>
+                            <button class="answer-btn" data-answer="5">5</button>
+                            <button class="answer-btn" data-answer="6">6</button>
+                            <button class="answer-btn" data-answer="7">7</button>
+                            <button class="answer-btn" data-answer="8">8</button>
+                            <button class="answer-btn" data-answer="9">9</button>
+                            <button class="answer-btn" data-answer="none">No Number</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 3: Vision Test -->
+        <section class="level-section" id="level3">
+            <div class="level-content">
+                <h2>Visual Acuity Test</h2>
+                <div class="vision-test-container">
+                    <div class="test-type-selector">
+                        <button class="test-type-btn active" data-test="distance">Distance Vision</button>
+                        <button class="test-type-btn" data-test="near">Near Vision</button>
+                    </div>
+                    <div class="vision-test-area">
+                        <div class="test-instructions">
+                            <p id="visionTestInstructions">Cover one eye and read the smallest line you can see clearly.</p>
+                        </div>
+                        <div class="eye-chart" id="eyeChart">
+                            <div class="chart-line" data-size="60">E</div>
+                            <div class="chart-line" data-size="50">F P</div>
+                            <div class="chart-line" data-size="40">T O Z</div>
+                            <div class="chart-line" data-size="30">L P E D</div>
+                            <div class="chart-line" data-size="24">P E C F D</div>
+                            <div class="chart-line" data-size="20">E D F C Z P</div>
+                            <div class="chart-line" data-size="16">F E L O P Z D</div>
+                            <div class="chart-line" data-size="12">D F P O T E C</div>
+                        </div>
+                        <div class="vision-input">
+                            <label>Smallest line you can read clearly:</label>
+                            <select id="visionResult">
+                                <option value="">Select line...</option>
+                                <option value="1">Line 1 (20/200)</option>
+                                <option value="2">Line 2 (20/160)</option>
+                                <option value="3">Line 3 (20/120)</option>
+                                <option value="4">Line 4 (20/80)</option>
+                                <option value="5">Line 5 (20/60)</option>
+                                <option value="6">Line 6 (20/40)</option>
+                                <option value="7">Line 7 (20/30)</option>
+                                <option value="8">Line 8 (20/20)</option>
+                            </select>
+                            <button class="submit-vision-btn" onclick="submitVisionTest()">Submit Result</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 4: Prescription Analysis -->
+        <section class="level-section" id="level4">
+            <div class="level-content">
+                <h2>Understanding Your Vision</h2>
+                <div class="prescription-container">
+                    <div class="prescription-input">
+                        <h3>Enter Your Prescription (Optional)</h3>
+                        <div class="prescription-form">
+                            <div class="eye-prescription">
+                                <h4>Right Eye (OD)</h4>
+                                <input type="number" placeholder="Sphere (SPH)" id="rightSphere" step="0.25">
+                                <input type="number" placeholder="Cylinder (CYL)" id="rightCylinder" step="0.25">
+                                <input type="number" placeholder="Axis" id="rightAxis" min="0" max="180">
+                            </div>
+                            <div class="eye-prescription">
+                                <h4>Left Eye (OS)</h4>
+                                <input type="number" placeholder="Sphere (SPH)" id="leftSphere" step="0.25">
+                                <input type="number" placeholder="Cylinder (CYL)" id="leftCylinder" step="0.25">
+                                <input type="number" placeholder="Axis" id="leftAxis" min="0" max="180">
+                            </div>
+                            <button class="analyze-btn" onclick="analyzePrescription()">Analyze My Prescription</button>
+                        </div>
+                    </div>
+                    <div class="prescription-results" id="prescriptionResults">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 5: Vision Condition Education -->
+        <section class="level-section" id="level5">
+            <div class="level-content">
+                <h2>How Different Eyes See the World</h2>
+                <div class="condition-tabs">
+                    <button class="tab-btn active" data-condition="normal">Normal Vision</button>
+                    <button class="tab-btn" data-condition="myopia">Myopia (Nearsighted)</button>
+                    <button class="tab-btn" data-condition="hyperopia">Hyperopia (Farsighted)</button>
+                    <button class="tab-btn" data-condition="astigmatism">Astigmatism</button>
+                    <button class="tab-btn" data-condition="presbyopia">Presbyopia</button>
+                </div>
+                <div class="condition-content">
+                    <div class="condition-info" id="conditionInfo">
+                        <h3>Normal Vision</h3>
+                        <p>With normal vision, light focuses directly on the retina, providing clear vision at all distances.</p>
+                    </div>
+                    <div class="condition-video">
+                        <div class="video-placeholder" id="conditionVideo">
+                            <p>Educational video about normal vision would be embedded here.</p>
+                            <p class="video-note">Replace this placeholder with actual video content in the configuration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level 6: Results -->
+        <section class="level-section" id="level6">
+            <div class="level-content">
+                <h2>Your Eye Health Results</h2>
+                <div class="results-container">
+                    <div class="results-summary">
+                        <div class="result-card">
+                            <h3><i class="fas fa-palette"></i> Color Vision</h3>
+                            <div class="result-content" id="colorVisionResult">
+                                <!-- Results populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <h3><i class="fas fa-eye"></i> Visual Acuity</h3>
+                            <div class="result-content" id="visualAcuityResult">
+                                <!-- Results populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="result-card">
+                            <h3><i class="fas fa-glasses"></i> Prescription Analysis</h3>
+                            <div class="result-content" id="prescriptionAnalysisResult">
+                                <!-- Results populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recommendations">
+                        <h3>Recommendations</h3>
+                        <div id="recommendationsContent">
+                            <!-- Recommendations populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="completion-actions">
+                        <button class="restart-btn" onclick="restartJourney()">Start Over</button>
+                        <button class="download-btn" onclick="downloadResults()">Download Results</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Preparing your next test...</p>
+        </div>
+    </div>
+
+    <script src="test-config.js"></script>
+    <script src="tux-animations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
